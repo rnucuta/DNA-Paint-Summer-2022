@@ -8,7 +8,7 @@ This script converts all groups (picks) in an hdf5 file to an image. Primary use
 This script finds the center of a training pick and crops it to 70% of its size while keeping the new center of the image. Intended to clean up noise from training data.
 
 ## `imagefiji.py`
-This script takes Fiji Trackmate xml data and displays the picks on images for viewing purposes.
+This script takes [Fiji Trackmate xml](https://imagej.net/plugins/trackmate/) data and displays the picks on images for viewing purposes.
 
 ## `3d_render.py`
 This script is for DNA paint localizations in 3 dimensions. It either exports 4 different views (isometric, xy, xz, yz) or displays a surface for each grouping.
