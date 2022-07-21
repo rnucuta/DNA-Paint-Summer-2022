@@ -11,6 +11,8 @@ from scipy import stats
 from skimage import measure
 from skimage.draw import ellipsoid
 
+# https://github.com/WoLpH/numpy-stl/issues/89
+
 
 
 # Generate a level set about zero of two identical ellipsoids in 3D

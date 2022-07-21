@@ -21,24 +21,27 @@ b_unique = Bs_data.find_all('SpotsInFrame')
  
 
 def integize(stri):
-	a=stri[0]
-	if a=='F':
-		a=0
-	elif a=='N':
-		a=500
-	elif a=='S':
-		a=1000
+	a=ord(stri[0])*1000
+	# if a=='F':
+	# 	a=0
+	# elif a=='N':
+	# 	a=500
+	# elif a=='S':
+	# 	a=1000
+	# else:
+	# 	a=10000
 	c=stri.replace('.jpg', '').replace('.xml', '')
 	# print(c)
 	try:
 		b=int(c[8:])
 	except:
-		a=10000
-		b=10000
+		a=1000000000
+		b=1000000000
 	return a+b
 
 a = os.listdir(args.imagefolder)
 a.sort(key=integize)
+print(a)
 
 out_dir=os.path.join(args.imagefolder, args.out)
 if not os.path.exists(out_dir):
