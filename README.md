@@ -1,5 +1,5 @@
 # DNA-Paint-SummerResearch-2022
-The following code is either helper code for this [binary classifier](https://colab.research.google.com/drive/1elS4sCJqXg2ybNFYJ3sbeeM9x0Wj5w4v?usp=sharing) or has other utility for the Biodesign Lab.
+The following code is either helper code for this [binary classifier](https://colab.research.google.com/drive/1elS4sCJqXg2ybNFYJ3sbeeM9x0Wj5w4v?usp=sharing) and this [SVC/k-means classifier](https://colab.research.google.com/drive/1lD4CBs88QwEnLbYKb05Tej0lx5yFjpZb?usp=sharing) utility for the Biodesign Lab.
 
 ## `hdf5topng.py`
 This script converts all groups (picks) in an hdf5 file to an image. Primary use of this was to generate training/testing data for the binary classifier.
