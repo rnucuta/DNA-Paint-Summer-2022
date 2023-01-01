@@ -7,14 +7,15 @@ from matplotlib import cm
 from matplotlib.ticker import LinearLocator
 from scipy.ndimage import gaussian_filter
 from matplotlib.figure import figaspect
+import os
 
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("--hdf5file", help="Input hdf5 file to convert", default="/mnt/c/Users/raymo/OneDrive/Documents/DNA Paint/test2/3 rep for Jonathan/Cropped1_Daria_3redU(3)_2nMImager_10nm_53angle_90k_secondday_Daria_3redU(3)_2nMImager_10nm_53angle_90k_secondday-1_locs_render_picked.hdf5")
 parser.add_argument("--outputfolder", help="Output folder for generated images", default="/mnt/c/Users/raymo/OneDrive/Documents/DNA Paint/test2/")
 parser.add_argument("--filenameprefix", help="File name prefix to append pick number too for output", default="A")
-parser.add_argument("--bins", help="Specify bins value for histogram", default=250)
-parser.add_argument("--sigma", help="Specify sigma value for gaussian blurring", default=6)
+parser.add_argument("--bins", help="Specify bins value for histogram, higher means more granularity", default=250)
+parser.add_argument("--sigma", help="Specify sigma value for gaussian blurring, higher means more blur", default=6)
 args = parser.parse_args()
 
 
@@ -43,15 +44,15 @@ for i in range(np.max(hdf['group'])):
 	w, h = figaspect(1)
 	fig, ax = plt.subplots(figsize=(w,h))
 	# fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
-	data = np.histogram2d(hdf['x'][prevind:ind], hdf['y'][prevind:ind], bins=args.bins)[0]
+	data = np.histogram2d(hdf['x'][prevind:ind], hdf['y'][prevind:ind], bins=int(args.bins))[0]
 	# data = np.histogramdd([hdf['x'][prevind:ind], hdf['y'][prevind:ind], hdf['z'][prevind:ind]], bins=50)[0]
 
-	data = gaussian_filter(data, sigma=args.sigma)
+	data = gaussian_filter(data, sigma=float(args.sigma))
 	# print(data.shape)
 	plt.pcolormesh(data.T, cmap='inferno', shading='gouraud')
 	# surf = ax.plot_surface(data[0], data[1], data[2], cmap=cm.coolwarm, linewidth=0, antialiased=False)
 	plt.axis('off')
-	plt.savefig(os.path.join(args.outputfolder, "{}-group-{}.jpg".format(args.filenameprefix, i), bbox_inches='tight',pad_inches = 0)
+	plt.savefig(os.path.join(args.outputfolder, "{}-group-{}.jpg".format(args.filenameprefix, i)), bbox_inches='tight',pad_inches = 0)
 	plt.clf()
 	prevind=ind
 
